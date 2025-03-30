@@ -1,4 +1,5 @@
 module.exports = {
+  transpileDependencies: true,
   publicPath: './',
   productionSourceMap: false,
   configureWebpack: {
@@ -8,15 +9,9 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    config.optimization.splitChunks({
-      cacheGroups: {
-        libs: {
-          name: 'chunk-libs',
-          test: /[\\/]node_modules[\\/]/,
-          priority: 10,
-          chunks: 'initial'
-        }
-      }
+    config.optimization.minimizer('terser').tap((args) => {
+      args[0].terserOptions.compress.drop_console = true
+      return args
     })
   }
 } 

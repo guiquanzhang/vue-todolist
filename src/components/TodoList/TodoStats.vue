@@ -16,6 +16,8 @@
 </template>
 
 <script setup>
+import { defineProps } from 'vue'
+
 defineProps({
   total: {
     type: Number,
@@ -36,29 +38,47 @@ defineProps({
 .todo-stats {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .stat-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 70%;
+  width: 1px;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .stat-label {
-  color: #6c757d;
+  color: #64748b;
   font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .stat-value {
-  font-size: 24px;
-  font-weight: bold;
-  color: #2c3e50;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1a365d;
 }
 
 .completed {
@@ -66,6 +86,6 @@ defineProps({
 }
 
 .remaining {
-  color: #ff9800;
+  color: #f59e0b;
 }
 </style> 

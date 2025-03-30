@@ -13,7 +13,9 @@
 </template>
 
 <script setup>
-const props = defineProps({
+import { defineProps, defineEmits } from 'vue'
+
+defineProps({
   modelValue: {
     type: String,
     required: true
